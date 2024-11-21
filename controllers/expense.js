@@ -30,13 +30,10 @@ const LoginUser = async (req, res) => {
             return res.status(400).json({ success: false, message: 'User not found' });
         }
         if (user.password !== password) {
-            return res.status(400).json({ success: false, message: 'Incorrect password' });
+            return res.status(400).json({ success: false, message: 'User not authorized' });
         }
-        res.status(200).json({
-            success: true,
-            message: 'Login successful',
-            user: user 
-        });
+        res.status(200).json({ success: true,message: 'User Login successful', user: user });
+        
     } catch (error) {
         console.log('Error during login:', error);
         res.status(500).json({ success: false, message: 'Error occurred during login' });
